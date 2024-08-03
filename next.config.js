@@ -1,13 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    async rewrites() {
-        return [
-          {
-            source: '/api/:path*',
-            destination: 'http://localhost:3000/:path*',
-          },
-        ]
-      },
+  async headers() {
+    return [
+       {
+          source: '/:path*',
+          headers: [
+             { key: 'referrer-policy', value: 'no-referrer'}
+          ]
+       }
+    ]
+ }
 }
 
 module.exports = nextConfig
